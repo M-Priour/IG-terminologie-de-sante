@@ -24,6 +24,10 @@ parameters:
     logging:
       - tx
     shownav: 'true'
+    no-validate:
+      - 'CodeSystem/TRE-R13-Commune'
+      - 'ValueSet/JDV-J120-CommuneHistorisee'
+      - 'ConceptMap/ASS-X12-CommuneDeptRegionOM'
     path-resource:
         - DM/fsh-generated/resources
         - input/ontoserver/JDV
