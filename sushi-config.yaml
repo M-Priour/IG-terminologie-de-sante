@@ -24,6 +24,7 @@ parameters:
     logging:
       - tx
     shownav: 'true'
+    path-expansion-params: Parameters-expansion.json
     no-validate:
       - 'CodeSystem/TRE-R13-Commune'
       - 'ValueSet/JDV-J120-CommuneHistorisee'
