@@ -29,6 +29,8 @@ parameters:
       - init #init: Messages describing the start up process (for debugging)
       - progress #progress: Overall progress messages
 
+    viewDefinition: '../../input/sql/sql-add-info.json'
+    
       
     shownav: 'true'
 
