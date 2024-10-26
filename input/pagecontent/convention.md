@@ -1,7 +1,7 @@
 ### Source 
 
 Vous trouverez ci-dessous la liste des sources : 
-- Recommandations et stratégies pour la gestion des objets FHIR® du NOS en vue  de leur intégration au  FHIR Terminology  Service du SMT
+- [Recommandations et stratégies pour la gestion des objets FHIR® du NOS en vue  de leur intégration au  FHIR Terminology  Service du SMT](Strategie_NOS_SMT_v1.9.pdf)
 - https://interop.esante.gouv.fr/ig/documentation/bonnes_pratiques_modeler.html
 - https://confluence.hl7.org/pages/viewpage.action?pageId=35718826#GuidetoDesigningResources-NamingRules&Guidelines
 
