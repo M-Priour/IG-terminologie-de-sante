@@ -19,10 +19,10 @@
     <div id="orig">
 
    {% sql {
-  "query" : "select name as Name, Description, web from Resources where Type='ValueSet' and url like '%NOS%'   order by substr(name,5,1), abs(substr(name,6, instr(substr(name,6,4),'_' )-1)) ",
+  "query" : "select name as Name, Description, Web from Resources where Type='ValueSet' and url like '%NOS%'   order by substr(name,5,1), abs(substr(name,6, instr(substr(name,6,4),'_' )-1)) ",
   "class" : "codes",
   "columns" : [
-    { "name" : "Name", "type" : "link", "source" : "Name", "target" : "web"},
+    { "name" : "Name", "type" : "link", "source" : "Name", "target" : "Web"},
     { "name" : "Description", "type" : "markdown", "source" : "Description"}
   ]
 } %}
