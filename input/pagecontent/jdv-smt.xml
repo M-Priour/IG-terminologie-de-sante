@@ -17,10 +17,10 @@
         <br/>
     <div id="orig">
        {% sql {
-  "query" : " select concat('<a href=''',  web ,''' >', name, '</a>')  as Name, Description, web from Resources where Type='ValueSet' and url not like '%NOS%'     and name not like '%_CISIS%'   ",
+  "query" : " select  Name, Description, Web from Resources where Type='ValueSet' and url not like '%NOS%'     and name not like '%_CISIS%'   ",
   "class" : "codes",
   "columns" : [
-    { "name" : "Name", "type" : "markdown", "resource" : "Name"},
+    { "name" : "Name", "type" : "link", "source" : "Name", "target" : "Web"},
     { "name" : "Description", "type" : "markdown", "source" : "Description"}
   ]
 } %}   
