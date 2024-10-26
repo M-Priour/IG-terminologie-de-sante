@@ -17,7 +17,14 @@
 
         <br/>
     <div id="orig">
-      {% sql fmt:codes;a;md;l:1 select name as Name, Description, web from Resources where Type='ValueSet' and name like '%_CISIS%'  %}
+   {% sql {
+  "query" : "select name as Name, Description, web from Resources where Type='ValueSet' and name like '%_CISIS%'  ",
+  "class" : "codes",
+  "columns" : [
+    { "name" : "Name", "type" : "link", "source" : "Name", "target" : "web"},
+    { "name" : "Description", "type" : "markdown", "source" : "Description"}
+  ]
+} %}                
     </div>
   
   </div>
