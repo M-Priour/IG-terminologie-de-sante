@@ -12,6 +12,19 @@ Vous touverez ici la liste des terminologies à l'etat "retired".
   </ul>
     <br/>
     <div id="orig">
-        {% sql fmt:codes;a;md;l:1 select name as Name, Description, web from Resources where Type='CodeSystem' and json_extract(Resources.json,'$.status')='retired' %}
+   {% sql {
+  "query" : "select name as Name, Description, web from Resources where Type='CodeSystem' and json_extract(Resources.json,'$.status')='retired' ",
+  "class" : "codes",
+  "columns" : [
+    { "name" : "Name", "type" : "link", "source" : "Name", "target" : "web"},
+    { "name" : "Description", "type" : "markdown", "source" : "Description"}
+  ]
+} %}    
+    
+    
+    
+    
+    
+    
     </div>
   </div>
