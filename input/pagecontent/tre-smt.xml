@@ -15,10 +15,10 @@
     <div id="orig">
 
    {% sql {
-  "query" : "select name as Name, Description, web from Resources where Type='CodeSystem' and url not like '%NOS%' ",
+  "query" : "select name as Name, Description, Web from Resources where Type='CodeSystem' and url not like '%NOS%' ",
   "class" : "codes",
   "columns" : [
-    { "name" : "Name", "type" : "link", "source" : "Name", "target" : "web"},
+    { "name" : "Name", "type" : "link", "source" : "Name", "target" : "Web"},
     { "name" : "Description", "type" : "markdown", "source" : "Description"}
   ]
 } %}
