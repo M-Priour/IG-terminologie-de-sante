@@ -17,10 +17,10 @@
         <br/>
     <div id="orig">
        {% sql {
-  "query" : "select name as Name, Description, web from Resources where Type='ValueSet' and url not like '%NOS%'     and name not like '%_CISIS%'   ",
+  "query" : "select '<a href=''' ||  web  || ''' >'  || name  || '</a>'  as Name, Description, web from Resources where Type='ValueSet' and url not like '%NOS%'     and name not like '%_CISIS%'   ",
   "class" : "codes",
   "columns" : [
-    { "name" : "Name", "type" : "link", "resource" : "Name"},
+    { "name" : "Name", "type" : "markdown", "resource" : "Name"},
     { "name" : "Description", "type" : "markdown", "source" : "Description"}
   ]
 } %}   
