@@ -92,6 +92,12 @@ Vous trouverez ci-dessous la liste des sources :
   </tbody>
 </table>
 
+
+#### jeux de valeur représentant l'ensemble de la terminologie
+- id => {id-termino}-all
+- url => {url-termino}?vs
+On retrouve l'url du valuset dans la terminologie d'origine :
+-   CodeSytem.valueSet =>  url 
 ####  TO DO
 
 #### Comment Indiquer le porteur de la terminologie
