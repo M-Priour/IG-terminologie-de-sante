@@ -6,25 +6,42 @@
     "valueCode" : "*"
   }],
   "select" : [{
-    "column" : [{
-      "name" : "name",
-      "path" : "name"
-    }],
-    "unionAll"  : [{
-      "column" : [{
-        "path" : "$this.substring(8)",
-        "name" : "oid"
-      }],
-      "forEach" : "url.where(startsWith('urn:oid:'))"
-    },{
-      "column" : [{
-        "path" : "value.substring(8)",
-        "name" : "oid"
-      }],
-      "forEach" : "identifier.where(value.startsWith('urn:oid'))"
-    }]
+    "column" : [
+        {
+          "name" : "id",
+          "path" : "id"
+        },
+        {
+          "name" : "name",
+          "path" : "name"
+        },
+        {
+          "name" : "title",
+          "path" : "title"
+        },
+        {
+          "name" : "description",
+          "path" : "description"
+        }
+    ],
+    "unionAll"  : [
+            {
+            "column" : [{
+              "path" : "$this.substring(8)",
+              "name" : "oid"
+            }],
+            "forEach" : "url.where(startsWith('urn:oid:'))"
+          },
+          {
+          "column" : [{
+            "path" : "value.substring(8)",
+            "name" : "oid"
+          }],
+          "forEach" : "identifier.where(value.startsWith('urn:oid'))"
+        }
+    ]
   }],
   "where"  : [{
-    "path" : "ValueSet.name.exists()"
+    "path" : "ValueSet.id.exists()"
   }]
 }
