@@ -1111,9 +1111,7 @@ pages:
         title :  Identifiants externes          
           
     autres_ressources.md:
-        title: Autres Ressources
-        convention.md:
-            title :   Convention             
+        title: Autres Ressources        
         telechargementNos.md:
             title :   téléchargement (NOS)           
         securite.md:
