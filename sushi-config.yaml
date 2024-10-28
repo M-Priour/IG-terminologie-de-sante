@@ -1142,7 +1142,6 @@ menu:
 #        Mapping NOS to FHIR   : NOS_MiseEnQualiteCorrectionDuMappingNOSversFhir.html       
 
     Ressources:
-        Convention : convention.html
         Téléchargement (NOS) : telechargementNos.html
         Sécurité: securite.html
         Téléchargements et usage: downloads.html
