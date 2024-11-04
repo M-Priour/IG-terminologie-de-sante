@@ -24,6 +24,7 @@ Les workflows associés à ce repository (.github/workflows) permettent :
 * D'executer Sushi pour vérifier la grammaire
 * De faire les tests avec le validator_cli
 * De publier les pages : https://ansforge.github.io/{nom du repo}/ig/{nom de la branche}
+
 Exemple : https://ansforge.github.io/IG-terminologie-de-sante/ig/main
 
 # Notes
