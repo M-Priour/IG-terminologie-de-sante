@@ -53,6 +53,20 @@ parameters:
       - https://interop.esante.gouv.fr/ig/terminologie/ImplementationGuide/ans.fr.terminologie
       - https://interop.esante.gouv.fr/ig/terminologie/NamingSystem/Snomed-CT-core
       - https://interop.esante.gouv.fr/ig/terminologie/NamingSystem/v3-loinc
+      - https://mos.esante.gouv.fr/NOS/JDV_J08-XdsConfidentialityCode-CISIS/FHIR/JDV-J08-XdsConfidentialityCode-CISIS
+      - https://mos.esante.gouv.fr/NOS/JDV_J282-TransportsLiesAuProjetIndividuel_SERAFIN/FHIR/JDV-J282-TransportsLiesAuProjetIndividuel-SERAFIN
+      - https://mos.esante.gouv.fr/NOS/JDV_J283-PrestationsIndirects_SERAFIN/FHIR/JDV-J283-PrestationsIndirects-SERAFIN
+      - https://mos.esante.gouv.fr/NOS/JDV_J284-PrestationsDirects_SERAFIN/FHIR/JDV-J284-PrestationsDirects-SERAFIN
+      - https://mos.esante.gouv.fr/NOS/JDV_J285-Besoins_SERAFIN/FHIR/JDV-J285-Besoins-SERAFIN
+      - https://mos.esante.gouv.fr/NOS/JDV_J286_ProfilUtilisateurReferentielNational_ROR/FHIR/JDV-J286-ProfilUtilisateurReferentielNational-ROR
+      - https://smt.esante.gouv.fr/terminologie-atc?vs
+      - https://smt.esante.gouv.fr/terminologie-cip_ucd?vs
+      - https://smt.esante.gouv.fr/terminologie-standardterms?vs
+      - https://smt.esante.gouv.fr/terminologie-nuva?vs
+      - https://smt.esante.gouv.fr/terminologie-sms?vs
+      - https://smt.esante.gouv.fr/terminologie-lahn
+      - https://mos.esante.gouv.fr/NOS/TRE_R368-StatutRessource/FHIR/TRE-R368-StatutRessource
+      - https://mos.esante.gouv.fr/NOS/TRE_R369_ProfilUtilisateurReferentielNational/FHIR/TRE-R369-ProfilUtilisateurReferentielNational
       - https://mos.esante.gouv.fr/NOS/ASS_12_CorresMediaTypeCDANonStructure-XdsFormatCode-CISIS.json
       - https://mos.esante.gouv.fr/NOS/ASS_A11-CorresModeleCDA-XdsFormatCode-CISIS
       - https://mos.esante.gouv.fr/NOS/ASS_A13-TypeEvenement-FluxStandardise/FHIR/ASS-A13-TypeEvenement-FluxStandardise
