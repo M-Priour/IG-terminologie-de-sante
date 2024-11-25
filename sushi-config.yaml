@@ -21,6 +21,9 @@ jurisdiction: urn:iso:std:iso:3166#FR "France"
 
 parameters:
     apply-version: false
+    apply-contact : false
+    apply-publisher : false
+    apply-jurisdiction : false
     path-expansion-params: '../../input/_resources/exp-params.json' # for using FR  of SNOMED    
     logging:
       - tx #tx: Messages describing the use of the terminology server (for debugging)
