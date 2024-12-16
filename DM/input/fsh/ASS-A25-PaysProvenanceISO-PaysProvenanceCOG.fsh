@@ -7,14 +7,19 @@ Usage: #definition
 * extension[=].valueBoolean = true
 * url = "https://mos.esante.gouv.fr/NOS/ASS_A25-PaysProvenanceISO-PaysProvenanceCOG/FHIR/ASS-A25-PaysProvenanceISO-PaysProvenanceCOG"
 * identifier.value = "urn:oid:1.2.250.1.213.2.66"
-* version = "20240126120000"
+* version = "20241122120000"
 * name = "ASS_A25_PaysProvenanceISO_PaysProvenanceCOG"
 * title = "ASS_A25_PaysProvenanceISO_PaysProvenanceCOG"
 * status = #active
 * experimental = false
-* date = "2024-01-26T12:00:00+01:00"
-* targetUri = "https://mos.esante.gouv.fr/NOS/JDV_J256-Pays/FHIR/JDV-J256-Pays"
+* date = "2024-11-22T12:00:00+01:00"
+* publisher = "ANS"
+* contact.name = "ANS"
+* contact.telecom.system = #url
+* contact.telecom.value = "https://esante.gouv.fr"
 * description = "Correspondance codes TRE_R268-PaysProvenanceISO / codes TRE_R20-Pays"
+* jurisdiction = urn:iso:std:iso:3166#FR "France"
+* targetUri = "https://mos.esante.gouv.fr/NOS/JDV_J256-Pays/FHIR/JDV-J256-Pays"
 * group.source = "https://mos.esante.gouv.fr/NOS/TRE_R268-PaysProvenanceISO/FHIR/TRE-R268-PaysProvenanceISO"
 * group.target = "https://mos.esante.gouv.fr/NOS/TRE_R20-Pays/FHIR/TRE-R20-Pays"
 * group.element[0].code = #AD
@@ -57,7 +62,7 @@ Usage: #definition
 * group.element[=].target.code = #99501
 * group.element[=].target.equivalence = #equivalent
 * group.element[+].code = #AW
-* group.element[=].target.code = #99135
+* group.element[=].target.code = #99431
 * group.element[=].target.equivalence = #equivalent
 * group.element[+].code = #AZ
 * group.element[=].target.code = #99253
