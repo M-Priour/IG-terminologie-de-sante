@@ -32,8 +32,11 @@ jobs:
         run: sushi ./igSource/DM
         
       - name: Suppression des fichiers FSH
-        run: rm ./igSource/DM/input/fsh/*.fsh
-        
+        run: | 
+          rm ./igSource/DM/input/fsh/*.fsh
+          rm ./igSource/DM/Done/GitHub/*.fsh
+          rm ./igSource/DM/Template/*.fsh
+          
       - name: Get From ontoserver      
         run: |
           mkdir ./igSource/input/ontoserver
