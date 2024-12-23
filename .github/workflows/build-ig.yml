@@ -27,13 +27,18 @@ jobs:
         
       - name: Install modules
         run: npm install -g fsh-sushi
+
+      - name: Suppression des fichiers templates
+        run : rm ./igSource/DM/input/fsh/Template/*.fsh    
         
       - name: Run sushi pour les DM
         run: sushi ./igSource/DM
         
       - name: Suppression des fichiers FSH
-        run: rm ./igSource/DM/input/fsh/*.fsh
-        
+        run: | 
+          rm ./igSource/DM/input/fsh/Done/GitHub/*.fsh
+
+          
       - name: Get From ontoserver      
         run: |
           mkdir ./igSource/input/ontoserver
