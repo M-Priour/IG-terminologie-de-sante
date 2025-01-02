@@ -1,0 +1,150 @@
+name: Release IG
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+
+
+
+# The following jobs are equal for all IGs and can be moved to a common composite-action if 'uses'-support is added, see:
+# https://github.com/actions/runner/blob/main/docs/adrs/1144-composite-actions.md
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Get IG-terminology-website-release
+        uses: actions/checkout@main
+        with:
+          persist-credentials: false
+          repository: ansforge//IG-terminology-website-release
+          path: IG-terminology-website-release
+          
+      - uses: actions/checkout@v4
+        with:      
+          path: igSource
+      
+      - name: Install fhirpy
+        run :  pip install fhirpy
+
+      - name: Install typing-extensions
+        run :  pip install typing-extensions
+        
+      - name: Install modules
+        run: npm install -g fsh-sushi
+
+      - name: Suppression des fichiers templates
+        run : rm ./igSource/DM/input/fsh/Template/*.fsh    
+        
+      - name: Run sushi pour les DM
+        run: sushi ./igSource/DM
+        
+      - name: Suppression des fichiers FSH
+        run: | 
+          rm ./igSource/DM/input/fsh/Done/GitHub/*.fsh
+
+          
+      - name: Get From ontoserver      
+        run: |
+          mkdir ./igSource/input/ontoserver
+          mkdir ./igSource/input/ontoserver/JDV
+          mkdir ./igSource/input/ontoserver/TRE
+          mkdir ./igSource/input/ontoserver/ASS
+          mkdir ./igSource/input/ontoserver/NamingSystem
+          cd ./igSource/tools
+          python ./upload.py 
+          
+      - name: List des repertoires
+        run: ls -R ./igSource/input
+        
+      # Downloads the newest version of the IG Publisher, this could probable be cached.
+      - name: 📥 Download IG Publisher
+        run: wget -q https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar
+
+
+
+      - name: Build and test with Rake        
+        run: |
+          sudo apt-get install ruby-full
+          sudo gem install jekyll
+
+      - name: Run sushi 
+        run: sushi ./igSource
+        
+      # Builds the HTML page for the IG.
+      - name: 🏃‍♂️ Run IG Publisher
+        run : |
+              cd  ./igSource
+              java -Xmx16344m -jar ../publisher.jar   -ig .  
+     
+
+          
+      - name: Setup Python # Set Python version
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+
+      - name: Install saxon
+        run : pip install saxonche
+        
+      - name: Run script python
+        run: |
+              cd  ./igSource
+              python ./tools/transform.py './output' './tools/xsl'
+
+
+      # Builds the HTML page for the IG.
+      - name: 🏃‍♂️ Generate package registry
+        run : java -Dfile.encoding=UTF-8 -jar publisher.jar -generate-package-registry ./IG-terminology-website-release
+        
+      - name: 🏃‍♂️ Run  Publisher to release
+        run :   java -Dfile.encoding=UTF-8 -jar publisher.jar -go-publish -source igRepo -web  ./IG-terminology-website-release/www/ig -registry ./IG-terminology-website-release/ig-registry/fhir-ig-list.json -history ./IG-terminology-website-release/fhir-ig-history-template -templates ./IG-terminology-website-release/templates    -temp      /home/runner/work/publication/temp 
+
+               
+        
+     # - name:  1 ZIP des fichiers 
+    #    run :  |
+    #          cd  ./igSource
+    #          zip -rj ./output/listFormat/jdv-svs.zip ./output/listFormat/ValueSet*-svs.xml  -x "*FHIR*" 
+    #          zip -rj ./output/listFormat/jdv-fhir-json.zip ./output/ValueSet*.json 
+    #          zip -rj ./output/listFormat/jdv-fhir-xml.zip ./output/ValueSet*.xml 
+    #          zip -rj ./output/listFormat/jdv-tabs.zip ./output/listFormat/ValueSet*.tabs   
+    #          zip -rj ./output/listFormat/tre-svs.zip ./output/listFormat/CodeSystem*-svs.xml  -x "*FHIR*"   
+    #          zip -rj ./output/listFormat/tre-fhir-json.zip ./output/CodeSystem*.json     
+    #          zip -rj ./output/listFormat/tre-fhir-xml.zip ./output/CodeSystem*.xml         
+    #          zip -rj ./output/listFormat/tre-tabs.zip ./output/listFormat/CodeSystem*.tabs
+        
+
+     # - name:  1 ZIP des NOS 
+     #   run :  |
+     #         cd  ./igSource
+     #         rm ./output/listFormat/NOS-Fichiers_Publics-Versions_xml_svs.zip
+     #         rm ./output/listFormat/NOS-Fichiers_Publics-Versions_json_fhir.zip
+     #         rm ./output/listFormat/Nos-fichiers_publics-versions_xml_fhir.zip
+     #         rm ./output/listFormat/NOS-Fichiers_Publics.zip
+     #         rm ./output/listFormat/NOS-Jeux_de_Valeurs_CI-SIS.zip
+              
+              zip -rj ./output/listFormat/NOS-Fichiers_Publics-Versions_xml_svs.zip ./output/listFormat/ValueSet*-svs.xml  ./output/listFormat/CodeSystem*-svs.xml  -x "*FHIR*" 
+              zip -FSrj ./output/listFormat/NOS-Fichiers_Publics-Versions_json_fhir.zip ./output/ValueSet*.json  ./output/CodeSystem*.json 
+              zip -FSrj ./output/listFormat/Nos-fichiers_publics-versions_xml_fhir.zip ./output/ValueSet*.xml ./output/CodeSystem*.xml 
+              zip -FSrj ./output/listFormat/NOS-Fichiers_Publics.zip ./output/listFormat/ValueSet*.tabs   ./output/listFormat/CodeSystem*.tabs   
+              zip -FSrj ./output/listFormat/NOS-Jeux_de_Valeurs_CI-SIS.zip ./output/listFormat/*CISIS*.tabs               
+       
+
+
+      #- name: Commit change on IG-website-release
+      #  run: |
+      #    cd  IG-website-release
+      #    git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      #    git config --local user.name "github-actions[bot]"
+       #   git add -A 
+        #  git commit -m updated
+          
+     # - name: Push changes on IG-website-release
+     #   uses: ad-m/github-push-action@master
+     #   with:
+     #     github_token: ${{ secrets.ANS_IG_API_TOKEN }}
+     #     directory: IG-website-release
+     #     repository : ansforge/IG-website-release
+     #     force : true
