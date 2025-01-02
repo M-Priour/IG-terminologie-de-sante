@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@main
         with:
           persist-credentials: false
-          repository: ansforge//IG-terminology-website-release
+          repository: ansforge/IG-terminology-website-release
           path: IG-terminology-website-release
           
       - uses: actions/checkout@v4
