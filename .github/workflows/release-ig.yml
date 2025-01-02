@@ -23,7 +23,7 @@ jobs:
 
       - name: Init        
         run: |
-          cd  IG-website-release
+          cd  IG-terminology-website-release
           git submodule update --init --recursive
           
       - uses: actions/checkout@v4
