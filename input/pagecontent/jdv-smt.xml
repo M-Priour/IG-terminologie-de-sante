@@ -17,7 +17,7 @@
         <br/>
     <div id="orig">
        {% sql {
-  "query" : " select  Name, Description, Web from Resources where Type='ValueSet' and url not like '%NOS%'     and name not like '%_CISIS%'   ",
+  "query" : " select  Name, Description, Web from Resources where Type='ValueSet' and url not like '%NOS%'     and name not like '%_CISIS%'   and json_extract(Resources.json,'$.status') != 'retired' ",
   "class" : "codes",
   "columns" : [
     { "name" : "Name", "type" : "link", "source" : "Name", "target" : "Web"},
