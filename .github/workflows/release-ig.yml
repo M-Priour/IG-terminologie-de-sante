@@ -107,12 +107,12 @@ jobs:
       - name: Run script python
         run: |
               cd  ./igSource
-              python ./tools/transform.py './IG-terminology-website-release/www/' './tools/xsl'
+              python ./tools/transform.py '../IG-terminology-website-release/www/' './tools/xsl'
 
         
       - name:  1 ZIP des fichiers 
         run :  |
-             cd  ./igSource
+             #cd  ./igSource
               zip -rj ./IG-terminology-website-release/www/listFormat/jdv-svs.zip ./IG-terminology-website-release/www/listFormat/ValueSet*-svs.xml  -x "*FHIR*" 
               zip -rj ./IG-terminology-website-release/www/listFormat/jdv-fhir-json.zip ./IG-terminology-website-release/www/ValueSet*.json 
               zip -rj ./IG-terminology-website-release/www/listFormat/jdv-fhir-xml.zip ./IG-terminology-website-release/www/ValueSet*.xml 
@@ -125,7 +125,7 @@ jobs:
 
       - name:  1 ZIP des NOS 
         run :  |
-              cd  ./igSource
+              #cd  ./igSource
               rm ./IG-terminology-website-release/www/listFormat/NOS-Fichiers_Publics-Versions_xml_svs.zip
               rm ./IG-terminology-website-release/www/listFormat/NOS-Fichiers_Publics-Versions_json_fhir.zip
               rm ./IG-terminology-website-release/www/listFormat/Nos-fichiers_publics-versions_xml_fhir.zip
