@@ -42,8 +42,8 @@ jobs:
       - name: Suppression des fichiers templates
         run : rm ./igSource/DM/input/fsh/Template/*.fsh    
         
-#      - name: Run sushi pour les DM
-#        run: sushi ./igSource/DM
+      - name: Run sushi pour les DM
+        run: sushi ./igSource/DM
         
       - name: Suppression des fichiers FSH
         run: | 
@@ -58,7 +58,7 @@ jobs:
           mkdir ./igSource/input/ontoserver/ASS
           mkdir ./igSource/input/ontoserver/NamingSystem
           cd ./igSource/tools
-          # python ./upload.py 
+          python ./upload.py 
           
       - name: List des repertoires
         run: ls -R ./igSource/input
