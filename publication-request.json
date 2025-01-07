@@ -1,12 +1,12 @@
 {
     "package-id" : "ans.fr.terminologie",
     "version" : "1.1.0",
-    "path" : "https://ansforge.github.io//IG-terminologie-de-sante/ig/main",
+    "path" : "https://interop.esante.gouv.fr/terminologies/0.1.0",
     "mode" : "milestone",
     "status" : "release",
     "sequence" : "release",
     "title" : "Guide d'implémentation des terminologies de Santé",
-    "desc" : "version de mars 2023",
+    "desc" : "version de janvier  2025",
     "ci-build" : "https://ansforge.github.io//IG-terminologie-de-sante/ig/main/",
     "category" : "Terminology",
     "introduction" : "version de mars 2023"
