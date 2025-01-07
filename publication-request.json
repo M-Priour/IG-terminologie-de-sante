@@ -7,7 +7,8 @@
     "sequence" : "release",
     "title" : "Guide d'implémentation des terminologies de Santé",
     "desc" : "version de janvier  2025",
+    "first": true,
     "ci-build" : "https://ansforge.github.io//IG-terminologie-de-sante/ig/main/",
     "category" : "Terminology",
-    "introduction" : "version de mars 2023"
+    "introduction" : "version de janvier 2025"
   }
