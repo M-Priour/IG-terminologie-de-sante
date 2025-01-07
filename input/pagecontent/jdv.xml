@@ -16,9 +16,21 @@
     <li><a href="jdv-telechargement.html">Téléchargement</a></li>
   </ul>
 
-      <ul class="columns-3">
-        {% include list-simple-name-valuesets.xhtml %}
-      </ul>    
+        <br/>
+    <div id="orig">
+
+   {% sql {
+  "query" : "select name as Name, Description, Web from Resources where Type='ValueSet'  and  json_extract(Resources.json,'$.status') != 'retired'  order by name",
+  "class" : "codes",
+  "columns" : [
+    { "name" : "Name", "type" : "link", "source" : "Name", "target" : "Web"},
+    { "name" : "Description", "type" : "markdown", "source" : "Description"}
+  ]
+} %}
+    
+    
+    </div>
+  
   </div>
 
 
