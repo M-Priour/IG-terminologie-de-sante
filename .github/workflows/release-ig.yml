@@ -104,41 +104,45 @@ jobs:
         run :   java -Xmx16344m  -Dfile.encoding=UTF-8 -jar publisher.jar -go-publish -source igSource  -web  ./IG-terminology-website-release/www/ -registry ./IG-terminology-website-release/ig-registry/fhir-ig-list.json -history ./IG-terminology-website-release/fhir-ig-history-template -templates ./IG-terminology-website-release/templates    -temp      /home/runner/work/publication/temp 
 
                
+      - name: Liste des fichiers de www
+        run: |
+              cd  ./IG-terminology-website-release/www
+              ls -lR
+               
       - name: Run script python
         run: |
               cd  ./igSource
-              python ./tools/transform.py '../IG-terminology-website-release/www/' './tools/xsl'
+              python ./tools/transform.py '../IG-terminology-website-release/www/terminologies' './tools/xsl'
 
         
       - name:  1 ZIP des fichiers 
         run :  |
              #cd  ./igSource
-              zip -rj ./IG-terminology-website-release/www/listFormat/jdv-svs.zip ./IG-terminology-website-release/www/listFormat/ValueSet*-svs.xml  -x "*FHIR*" 
-              zip -rj ./IG-terminology-website-release/www/listFormat/jdv-fhir-json.zip ./IG-terminology-website-release/www/ValueSet*.json 
-              zip -rj ./IG-terminology-website-release/www/listFormat/jdv-fhir-xml.zip ./IG-terminology-website-release/www/ValueSet*.xml 
-              zip -rj ./IG-terminology-website-release/www/listFormat/jdv-tabs.zip ./IG-terminology-website-release/www/listFormat/ValueSet*.tabs   
-              zip -rj ./IG-terminology-website-release/www/listFormat/tre-svs.zip ./output/listFormat/CodeSystem*-svs.xml  -x "*FHIR*"   
-              zip -rj ./IG-terminology-website-release/www/listFormat/tre-fhir-json.zip ./IG-terminology-website-release/www/CodeSystem*.json     
-              zip -rj ./IG-terminology-website-release/www/listFormat/tre-fhir-xml.zip ./IG-terminology-website-release/www/CodeSystem*.xml         
-              zip -rj ./IG-terminology-website-release/www/listFormat/tre-tabs.zip ./IG-terminology-website-release/www/listFormat/CodeSystem*.tabs
+              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/jdv-svs.zip ./IG-terminology-website-release/www/terminologies/listFormat/ValueSet*-svs.xml  -x "*FHIR*" 
+              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/jdv-fhir-json.zip ./IG-terminology-website-release/www/terminologies/ValueSet*.json 
+              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/jdv-fhir-xml.zip ./IG-terminology-website-release/www/terminologies/ValueSet*.xml 
+              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/jdv-tabs.zip ./IG-terminology-website-release/www/terminologies/listFormat/ValueSet*.tabs   
+              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/tre-svs.zip ./IG-terminology-website-release/www/terminologies/listFormat/CodeSystem*-svs.xml  -x "*FHIR*"   
+              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/tre-fhir-json.zip ./IG-terminology-website-release/www/terminologies/CodeSystem*.json     
+              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/tre-fhir-xml.zip ./IG-terminology-website-release/www/terminologies/CodeSystem*.xml         
+              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/tre-tabs.zip ./IG-terminology-website-release/www/terminologies/listFormat/CodeSystem*.tabs
         
 
       - name:  1 ZIP des NOS 
         run :  |
               #cd  ./igSource
-              rm ./IG-terminology-website-release/www/listFormat/NOS-Fichiers_Publics-Versions_xml_svs.zip
-              rm ./IG-terminology-website-release/www/listFormat/NOS-Fichiers_Publics-Versions_json_fhir.zip
-              rm ./IG-terminology-website-release/www/listFormat/Nos-fichiers_publics-versions_xml_fhir.zip
-              rm ./IG-terminology-website-release/www/listFormat/NOS-Fichiers_Publics.zip
-              rm ./IG-terminology-website-release/www/listFormat/NOS-Jeux_de_Valeurs_CI-SIS.zip
+              rm ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics-Versions_xml_svs.zip
+              rm ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics-Versions_json_fhir.zip
+              rm ./IG-terminology-website-release/www/terminologies/listFormat/Nos-fichiers_publics-versions_xml_fhir.zip
+              rm ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics.zip
+              rm ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Jeux_de_Valeurs_CI-SIS.zip
               
-              zip -rj ./IG-terminology-website-release/www/listFormat/NOS-Fichiers_Publics-Versions_xml_svs.zip ./IG-terminology-website-release/www/listFormat/ValueSet*-svs.xml  ./output/listFormat/CodeSystem*-svs.xml  -x "*FHIR*" 
-              zip -FSrj ./IG-terminology-website-release/www/listFormat/NOS-Fichiers_Publics-Versions_json_fhir.zip ./output/ValueSet*.json  ./IG-terminology-website-release/www/CodeSystem*.json 
-              zip -FSrj ./IG-terminology-website-release/www/listFormat/Nos-fichiers_publics-versions_xml_fhir.zip ./output/ValueSet*.xml ./IG-terminology-website-release/www/CodeSystem*.xml 
-              zip -FSrj ./IG-terminology-website-release/www/listFormat/NOS-Fichiers_Publics.zip ./output/listFormat/ValueSet*.tabs   ./IG-terminology-website-release/www/listFormat/CodeSystem*.tabs   
-              zip -FSrj ./IG-terminology-website-release/www/listFormat/NOS-Jeux_de_Valeurs_CI-SIS.zip ./IG-terminology-website-release/www/listFormat/*CISIS*.tabs               
+              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics-Versions_xml_svs.zip ./IG-terminology-website-release/www/terminologies/listFormat/ValueSet*-svs.xml  ./IG-terminology-website-release/www/terminologies/CodeSystem*-svs.xml  -x "*FHIR*" 
+              zip -FSrj ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics-Versions_json_fhir.zip ./output/ValueSet*.json  ./IG-terminology-website-release/www/terminologies/CodeSystem*.json 
+              zip -FSrj ./IG-terminology-website-release/www/terminologies/listFormat/Nos-fichiers_publics-versions_xml_fhir.zip ./output/ValueSet*.xml ./IG-terminology-website-release/www/terminologies/CodeSystem*.xml 
+              zip -FSrj ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics.zip ./output/listFormat/ValueSet*.tabs   ./IG-terminology-website-release/www/terminologies/listFormat/CodeSystem*.tabs   
+              zip -FSrj ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Jeux_de_Valeurs_CI-SIS.zip ./IG-terminology-website-release/www/terminologies/listFormat/*CISIS*.tabs               
        
-
 
       #- name: Commit change on IG-website-release
       #  run: |
