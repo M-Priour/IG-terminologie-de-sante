@@ -147,6 +147,7 @@ jobs:
       - name: Commit change on IG-terminology-website-release
         run: |
           cd  IG-terminology-website-release
+          git config http.postBuffer 524288000
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add -A 
