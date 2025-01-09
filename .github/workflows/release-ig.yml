@@ -156,6 +156,6 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.ANS_IG_API_TOKEN }}
-          directory: IG-website-release
+          directory:  IG-terminology-website-release
           repository : ansforge/IG-terminology-website-release
           force : true
