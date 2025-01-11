@@ -37,6 +37,8 @@ jobs:
       - run: |
           echo '${{ fromJson(env.PACKAGE_JSON).version }}'
           echo '${{ fromJson(env.PACKAGE_JSON).desc }}'
+          file_path=$(echo ${{ fromJson(env.PACKAGE_JSON).path }} | cut -d@ -f2 | cut -d/ -f2- | cut -d? -f1)
+          echo ${file_path}
             
       - name: Install fhirpy
         run :  pip install fhirpy
@@ -123,7 +125,7 @@ jobs:
           tag: ${{ github.ref_name }}
         run: |
           gh release create "${{ fromJson(env.PACKAGE_JSON).version }}" -t "${{ fromJson(env.PACKAGE_JSON).desc}}"  --generate-notes  --repo="$GITHUB_REPOSITORY" 
-
+          gh release upload "${{ fromJson(env.PACKAGE_JSON).version }}" ./IG-terminology-website-release/www/${{ fromJson(env.PACKAGE_JSON).version }}/full-ig.zip 
         
   
 
