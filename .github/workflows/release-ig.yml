@@ -29,7 +29,15 @@ jobs:
       - uses: actions/checkout@v4
         with:      
           path: igSource
-      
+
+      - run: |
+          echo 'PACKAGE_JSON<<EOF' >> $GITHUB_ENV
+          cat ./igSource/publication-request.json >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+      - run: |
+          echo '${{ fromJson(env.PACKAGE_JSON).version }}'
+          echo '${{ fromJson(env.PACKAGE_JSON).desc }}'
+            
       - name: Install fhirpy
         run :  pip install fhirpy
 
@@ -109,11 +117,15 @@ jobs:
               cd  ./IG-terminology-website-release/www
               ls -lR
                
-      - name: Run script python
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
         run: |
-              cd  ./igSource
-              python ./tools/transform.py '../IG-terminology-website-release/www/terminologies' './tools/xsl'
-
+          gh release create "$tag" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="${tag#v}" \
+              --generate-notes
         
   
 
