@@ -58,7 +58,7 @@ jobs:
           mkdir ./igSource/input/ontoserver/ASS
           mkdir ./igSource/input/ontoserver/NamingSystem
           cd ./igSource/tools
-          python ./upload.py 
+          # python ./upload.py 
           
       - name: List des repertoires
         run: ls -R ./igSource/input
@@ -115,48 +115,6 @@ jobs:
               python ./tools/transform.py '../IG-terminology-website-release/www/terminologies' './tools/xsl'
 
         
-      - name:  1 ZIP des fichiers 
-        run :  |
-             #cd  ./igSource
-              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/jdv-svs.zip ./IG-terminology-website-release/www/terminologies/listFormat/ValueSet*-svs.xml  -x "*FHIR*" 
-              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/jdv-fhir-json.zip ./IG-terminology-website-release/www/terminologies/ValueSet*.json 
-              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/jdv-fhir-xml.zip ./IG-terminology-website-release/www/terminologies/ValueSet*.xml 
-              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/jdv-tabs.zip ./IG-terminology-website-release/www/terminologies/listFormat/ValueSet*.tabs   
-              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/tre-svs.zip ./IG-terminology-website-release/www/terminologies/listFormat/CodeSystem*-svs.xml  -x "*FHIR*"   
-              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/tre-fhir-json.zip ./IG-terminology-website-release/www/terminologies/CodeSystem*.json     
-              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/tre-fhir-xml.zip ./IG-terminology-website-release/www/terminologies/CodeSystem*.xml         
-              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/tre-tabs.zip ./IG-terminology-website-release/www/terminologies/listFormat/CodeSystem*.tabs
-        
+  
 
-      - name:  1 ZIP des NOS 
-        run :  |
-              #cd  ./igSource
-              rm ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics-Versions_xml_svs.zip
-              rm ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics-Versions_json_fhir.zip
-              rm ./IG-terminology-website-release/www/terminologies/listFormat/Nos-fichiers_publics-versions_xml_fhir.zip
-              rm ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics.zip
-              rm ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Jeux_de_Valeurs_CI-SIS.zip
-              
-              zip -rj ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics-Versions_xml_svs.zip ./IG-terminology-website-release/www/terminologies/listFormat/ValueSet*-svs.xml  ./IG-terminology-website-release/www/terminologies/CodeSystem*-svs.xml  -x "*FHIR*" 
-              zip -FSrj ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics-Versions_json_fhir.zip ./output/ValueSet*.json  ./IG-terminology-website-release/www/terminologies/CodeSystem*.json 
-              zip -FSrj ./IG-terminology-website-release/www/terminologies/listFormat/Nos-fichiers_publics-versions_xml_fhir.zip ./output/ValueSet*.xml ./IG-terminology-website-release/www/terminologies/CodeSystem*.xml 
-              zip -FSrj ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Fichiers_Publics.zip ./output/listFormat/ValueSet*.tabs   ./IG-terminology-website-release/www/terminologies/listFormat/CodeSystem*.tabs   
-              zip -FSrj ./IG-terminology-website-release/www/terminologies/listFormat/NOS-Jeux_de_Valeurs_CI-SIS.zip ./IG-terminology-website-release/www/terminologies/listFormat/*CISIS*.tabs               
-       
 
-      - name: Commit change on IG-terminology-website-release
-        run: |
-          cd  IG-terminology-website-release
-          git config http.postBuffer 524288000
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add -A 
-          git commit -m updated
-          
-      - name: Push changes on IG-website-release
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.ANS_IG_API_TOKEN }}
-          directory:  IG-terminology-website-release
-          repository : ansforge/IG-terminology-website-release
-          force : true
