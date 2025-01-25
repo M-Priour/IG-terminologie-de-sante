@@ -1,0 +1,33 @@
+name: ollama-e2e
+
+on:
+    workflow_dispatch:
+
+jobs:
+    ollama-e2e:
+        name: ollama-e2e
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v1
+        - uses: self-actuated/nvidia-run@master
+        - name: Install Ollama
+          run: |
+            curl -fsSL https://ollama.com/install.sh | sudo -E sh
+        - name: Start serving
+          run: |
+              # Run the background, there is no way to daemonise at the moment
+              ollama serve &
+
+              # A short pause is required before the HTTP port is opened
+              sleep 5
+
+              # This endpoint blocks until ready
+              time curl -i http://localhost:11434
+
+        - name: Pull llama2
+          run: |
+              ollama pull llama2
+
+        - name: Invoke via the CLI
+          run: |
+              ollama run llama2 "What are the pros of MicroVMs for continous integrations, especially if Docker is the alternative?"
