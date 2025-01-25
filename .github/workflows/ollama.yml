@@ -9,7 +9,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v1
-        - uses: self-actuated/nvidia-run@master
         - name: Install Ollama
           run: |
             curl -fsSL https://ollama.com/install.sh | sudo -E sh
